@@ -12,7 +12,7 @@ public class UserMapper {
         return User.builder()
                 .name(dto.name())
                 .email(dto.email())
-                .password(dto.password()) // depois vamos criptografar
+                .password(dto.password())
                 .build();
     }
 
