@@ -1,0 +1,27 @@
+package com.daniel.workboard.domain.mapper;
+
+import com.daniel.workboard.domain.dto.UserRequestDTO;
+import com.daniel.workboard.domain.dto.UserResponseDTO;
+import com.daniel.workboard.domain.entity.User;
+import org.springframework.stereotype.Component;
+
+@Component
+public class UserMapper {
+
+    public User toEntity(UserRequestDTO dto) {
+        return User.builder()
+                .name(dto.name())
+                .email(dto.email())
+                .password(dto.password()) // depois vamos criptografar
+                .build();
+    }
+
+    public UserResponseDTO toResponse(User user) {
+        return new UserResponseDTO(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getCreatedAt()
+        );
+    }
+}
