@@ -4,6 +4,9 @@ import com.daniel.workboard.domain.model.TaskStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @Setter
@@ -22,7 +25,19 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
 
+    private LocalDate dueDate;
+
+    private LocalDateTime createdAt;
+
     @ManyToOne
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
+
+    @PrePersist
+    public void prePersist() {
+        createdAt = LocalDateTime.now();
+        if (status == null) {
+            status = TaskStatus.TODO;
+        }
+    }
 }
