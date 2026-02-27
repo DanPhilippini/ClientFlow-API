@@ -4,6 +4,7 @@ import com.daniel.workboard.domain.dto.project.ProjectRequestDTO;
 import com.daniel.workboard.domain.dto.project.ProjectResponseDTO;
 import com.daniel.workboard.service.ProjectService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.http.ResponseEntity;
@@ -30,10 +31,10 @@ public class ProjectController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProjectResponseDTO>> findAll(Authentication authentication) {
+    public ResponseEntity<List<ProjectResponseDTO>> findAll(Pageable pageable, Authentication authentication) {
 
         String email = authentication.getName();
-        return ResponseEntity.ok(service.findAllByUser(email));
+        return ResponseEntity.ok(service.findAllByUser(pageable, email));
     }
 
     @GetMapping("/{id}")

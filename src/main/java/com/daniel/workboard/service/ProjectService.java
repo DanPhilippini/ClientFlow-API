@@ -9,6 +9,7 @@ import com.daniel.workboard.repository.ProjectRepository;
 import com.daniel.workboard.repository.UserRepository;
 import com.daniel.workboard.security.SecurityUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,12 +38,12 @@ public class ProjectService {
         return mapper.toResponse(project);
     }
 
-    public List<ProjectResponseDTO> findAllByUser(String userEmail) {
+    public List<ProjectResponseDTO> findAllByUser(Pageable pageable, String userEmail) {
 
         User user = userRepository.findByEmail(userEmail)
                 .orElseThrow();
 
-        return projectRepository.findByUserId(user.getId())
+        return projectRepository.findByUserId(user.getId(), pageable)
                 .stream()
                 .map(mapper::toResponse)
                 .collect(Collectors.toList());
