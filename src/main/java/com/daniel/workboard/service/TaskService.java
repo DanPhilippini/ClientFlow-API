@@ -12,6 +12,8 @@ import com.daniel.workboard.repository.ProjectRepository;
 import com.daniel.workboard.repository.TaskRepository;
 import com.daniel.workboard.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class TaskService {
+    private static final Logger log = LoggerFactory.getLogger(TaskService.class);
     private final TaskRepository taskRepository;
     private final ProjectRepository projectRepository;
     private final UserRepository userRepository;
@@ -28,6 +31,8 @@ public class TaskService {
     public TaskResponseDTO create(Long projectId,
                                   TaskRequestDTO request,
                                   String userEmail) {
+
+        log.info("Creating task '{}' on project {}", request.title(), projectId);
 
         User user = userRepository.findByEmail(userEmail)
                 .orElseThrow();

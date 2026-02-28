@@ -1,0 +1,26 @@
+package com.daniel.workboard.common;
+
+import java.time.LocalDateTime;
+
+public class ApiResponse<T> {
+
+    private LocalDateTime timestamp;
+    private boolean success;
+    private String message;
+    private T data;
+
+    public ApiResponse(boolean success, String message, T data) {
+        this.timestamp = LocalDateTime.now();
+        this.success = success;
+        this.message = message;
+        this.data = data;
+    }
+
+    public static <T> ApiResponse<T> success(String message, T data) {
+        return new ApiResponse<>(true, message, data);
+    }
+
+    public static <T> ApiResponse<T> error(String message, T data) {
+        return new ApiResponse<>(false, message, data);
+    }
+}

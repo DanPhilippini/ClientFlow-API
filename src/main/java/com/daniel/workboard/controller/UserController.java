@@ -1,9 +1,10 @@
 package com.daniel.workboard.controller;
 
+import com.daniel.workboard.config.ApiPaths;
 import com.daniel.workboard.domain.dto.UserRequestDTO;
 import com.daniel.workboard.domain.dto.UserResponseDTO;
-import com.daniel.workboard.domain.entity.User;
 import com.daniel.workboard.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping(ApiPaths.API_V1 + "/users")
+@Tag(name = "User", description = "Endpoints for managing users")
 @RequiredArgsConstructor
 public class UserController {
 
