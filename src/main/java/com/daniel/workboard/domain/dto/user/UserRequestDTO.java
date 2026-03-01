@@ -1,4 +1,4 @@
-package com.daniel.workboard.domain.dto;
+package com.daniel.workboard.domain.dto.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

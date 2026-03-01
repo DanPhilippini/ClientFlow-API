@@ -1,7 +1,7 @@
 package com.daniel.workboard.service;
 
-import com.daniel.workboard.domain.dto.UserRequestDTO;
-import com.daniel.workboard.domain.dto.UserResponseDTO;
+import com.daniel.workboard.domain.dto.user.UserRequestDTO;
+import com.daniel.workboard.domain.dto.user.UserResponseDTO;
 import com.daniel.workboard.domain.entity.User;
 import com.daniel.workboard.domain.mapper.UserMapper;
 import com.daniel.workboard.exception.BusinessException;

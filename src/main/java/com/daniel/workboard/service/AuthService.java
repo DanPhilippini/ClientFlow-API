@@ -2,6 +2,7 @@ package com.daniel.workboard.service;
 
 import com.daniel.workboard.domain.dto.AuthResponseDTO;
 import com.daniel.workboard.domain.dto.LoginRequestDTO;
+import com.daniel.workboard.domain.dto.RefreshTokenRequestDTO;
 import com.daniel.workboard.domain.entity.User;
 import com.daniel.workboard.exception.BusinessException;
 import com.daniel.workboard.repository.UserRepository;
@@ -31,8 +32,23 @@ public class AuthService {
             throw new BusinessException("Invalid credentials");
         }
 
-        String token = jwtService.generateToken(user);
+        String accessToken = jwtService.generateAccessToken(user);
+        String refreshToken = jwtService.generateRefreshToken(user);
 
-        return new AuthResponseDTO(token);
+        return new AuthResponseDTO(accessToken, refreshToken);
+    }
+
+    public AuthResponseDTO refreshToken(RefreshTokenRequestDTO request) {
+
+        String username = jwtService.extractUsername(request.refreshToken());
+
+        User user = repository.findByEmail(username).orElse(null);
+
+        if (user == null) {
+            throw new RuntimeException("Invalid refresh token");
+        }
+
+        String newAccessToken = jwtService.generateAccessToken(user);
+        return new AuthResponseDTO(newAccessToken, request.refreshToken());
     }
 }

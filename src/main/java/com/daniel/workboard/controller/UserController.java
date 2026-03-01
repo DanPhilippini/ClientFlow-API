@@ -1,8 +1,8 @@
 package com.daniel.workboard.controller;
 
 import com.daniel.workboard.config.ApiPaths;
-import com.daniel.workboard.domain.dto.UserRequestDTO;
-import com.daniel.workboard.domain.dto.UserResponseDTO;
+import com.daniel.workboard.domain.dto.user.UserRequestDTO;
+import com.daniel.workboard.domain.dto.user.UserResponseDTO;
 import com.daniel.workboard.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
