@@ -21,6 +21,12 @@ This project was built as a professional-grade backend portfolio project.
 
 ---
 
+![CI](https://github.com/DanPhilippini/ClientFlow-API/actions/workflows/ci.yml/badge.svg)
+
+![Coverage](https://img.shields.io/badge/coverage-85%25-brightgreen)
+
+---
+
 ## 🏗 Architecture
 
 The project follows a clean layered architecture:

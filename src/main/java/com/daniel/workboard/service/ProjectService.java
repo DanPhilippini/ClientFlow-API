@@ -44,7 +44,7 @@ public class ProjectService {
     public List<ProjectResponseDTO> findAllByUser(Pageable pageable, String userEmail) {
 
         User user = userRepository.findByEmail(userEmail)
-                .orElseThrow();
+                .orElseThrow(() -> new RuntimeException("Invalid user"));
 
         return projectRepository.findByUserId(user.getId(), pageable)
                 .stream()

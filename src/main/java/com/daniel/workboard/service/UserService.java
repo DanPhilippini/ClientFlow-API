@@ -47,4 +47,9 @@ public class UserService {
                 .map(mapper::toResponse)
                 .toList();
     }
+
+    public User findById(long l) {
+        return repository.findById(l)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
 }
