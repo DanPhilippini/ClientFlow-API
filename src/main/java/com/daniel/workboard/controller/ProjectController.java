@@ -1,8 +1,10 @@
 package com.daniel.workboard.controller;
 
+import com.daniel.workboard.config.ApiPaths;
 import com.daniel.workboard.domain.dto.project.ProjectRequestDTO;
 import com.daniel.workboard.domain.dto.project.ProjectResponseDTO;
 import com.daniel.workboard.service.ProjectService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +14,8 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 @RestController
-@RequestMapping("/projects")
+@RequestMapping(ApiPaths.API_V1 + "/projects")
+@Tag(name = "Projects", description = "Endpoints for managing projects")
 public class ProjectController {
 
     private final ProjectService service;

@@ -1,88 +1,185 @@
 # 🚀 ClientFlow API
 
-ClientFlow API is a production-ready Spring Boot REST API designed for secure multi-tenant client and task management.
+Backend REST API for client and task management built with **Spring Boot 3**, featuring JWT authentication, role-based authorization, pagination, validation, and OpenAPI documentation.
 
-It provides JWT authentication, role-based and owner-based authorization, pagination, validation, Docker support, and CI/CD integration.
+> Designed with clean architecture principles and production-ready best practices.
 
 ---
 
 ## 📌 Overview
 
-ClientFlow is built to simulate a real SaaS backend used by freelancers and small businesses to manage:
+ClientFlow API is a secure and scalable backend service that allows:
 
-- Users
-- Clients
-- Tasks
+- User authentication with JWT
+- Role-based access control (USER / ADMIN)
+- Client and task management
+- Pagination and sorting
+- Standardized error handling
+- Interactive API documentation (Swagger UI)
 
-Each user can only access their own data (owner-based authorization), making the system secure and multi-tenant ready.
+This project was built as a professional-grade backend portfolio project.
 
 ---
 
-## 🧠 Key Features
+![CI](https://github.com/DanPhilippini/ClientFlow-API/actions/workflows/ci.yml/badge.svg)
 
-- 🔐 JWT Stateless Authentication
-- 👥 Role-Based Authorization (ADMIN / USER)
-- 🏢 Owner-Based Data Isolation (Multi-tenant)
-- 📄 Pagination & Sorting
-- ✅ Request Validation
-- 🐳 Dockerized Setup
-- 🧪 Unit & Integration Tests
-- ⚙ CI/CD with GitHub Actions
-- 📘 Swagger API Documentation
+![Coverage](https://img.shields.io/badge/coverage-85%25-brightgreen)
 
 ---
 
 ## 🏗 Architecture
 
-The project follows a layered architecture:
-
+The project follows a clean layered architecture:
 controller → service → repository → database
 
-It also implements:
-
-- DTO Pattern
-- Global Exception Handling
-- Clean separation of concerns
-- Secure password encryption (BCrypt)
 
 ---
 
-## 🛠 Tech Stack
+## 🔐 Security
 
-- Java 17+
-- Spring Boot 3
-- Spring Security
-- JWT
-- PostgreSQL
-- Docker
-- JUnit 5
-- Mockito
-- GitHub Actions
+- JWT-based authentication
+- Stateless session management
+- Custom AuthenticationEntryPoint
+- Role-based authorization
+- Password encryption with BCrypt
+- Structured error responses
 
----
+### Authentication Flow
 
-## 🔐 Authentication Flow
+1. User logs in
+2. API returns JWT access token
+3. Token must be sent in header:
+   Authorization: Bearer <token>
 
-1. User registers
-2. User logs in
-3. API returns JWT token
-4. Token must be sent in headers:
-
-Authorization: Bearer <token>
-
-All protected endpoints require authentication.
 
 ---
 
-## 📘 API Documentation
+## 📖 API Documentation
 
 Swagger UI available at:
+http://localhost:8080/swagger-ui.html
 
-/swagger-ui.html
+
+Features:
+- Full endpoint documentation
+- Request/response examples
+- JWT Authorize button
+- Error response schema
 
 ---
 
-## 🐳 Running with Docker
+## 🛠 Technologies Used
+
+- Java 21
+- Spring Boot 3.4.x
+- Spring Security
+- Spring Data JPA
+- PostgreSQL
+- JWT (jjwt 0.11.5)
+- OpenAPI / Swagger (springdoc)
+- Maven
+- Docker & Docker Compose
+- Lombok
+
+---
+
+## ⚙️ Running the Project
+
+### 1 - Clone the repository
 
 ```bash
-docker compose up --build
+git clone https://github.com/DanPhilippini/ClientFlow-API.git
+cd ClientFlow-API
+```
+
+### 2 - Run with Docker (Recommended)
+
+```bash
+docker-compose up --build
+```
+
+---
+
+## 📦 Environment Variables
+
+Example configuration:
+
+SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/clientflow
+
+SPRING_DATASOURCE_USERNAME=postgres
+
+SPRING_DATASOURCE_PASSWORD=postgres
+
+JWT_SECRET=your_secret_key
+
+---
+
+🧪 Testing
+
+Run tests with:
+
+mvn test
+
+📄 Example Response
+
+✅ Success
+
+{
+"id": 1,
+"name": "Client A",
+"email": "client@email.com"
+}
+
+❌ Error
+
+{
+"timestamp": "2026-02-28T10:15:30",
+"status": 401,
+"error": "Unauthorized",
+"message": "Invalid or expired token",
+"path": "/api/v1/clients"
+}
+
+---
+
+## 🎯 Key Features Implemented
+
+✔ Layered architecture
+
+✔ JWT authentication
+
+✔ Role-based authorization
+
+✔ DTO validation
+
+✔ Pagination & sorting
+
+✔ Global exception handling
+
+✔ Swagger documentation
+
+✔ Dockerized environment
+
+---
+
+## 🚀 Possible Future Improvements
+
+
+CI/CD pipeline (GitHub Actions)
+
+Token blacklist / rotation
+
+Rate limiting
+
+Monitoring with Spring Actuator
+
+---
+
+## 👨‍💻 Author
+
+Daniel Philippini
+
+Backend Developer – Java & Spring Boot
+
+GitHub:
+https://github.com/DanPhilippini

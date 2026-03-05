@@ -15,3 +15,8 @@ server:
 jwt:
   secret: ${JWT_SECRET}
   expiration: 3600000
+
+logging:
+  level:
+    root: INFO
+    com.daniel.workboard: DEBUG

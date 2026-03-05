@@ -1,6 +1,6 @@
 package com.daniel.workboard.domain.dto;
 
-public record AuthResponseDTO(
-        String accessToken,
+public record RefreshTokenRequestDTO(
         String refreshToken
-) {}
+) {
+}

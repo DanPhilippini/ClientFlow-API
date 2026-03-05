@@ -1,7 +1,7 @@
 package com.daniel.workboard.domain.mapper;
 
-import com.daniel.workboard.domain.dto.UserRequestDTO;
-import com.daniel.workboard.domain.dto.UserResponseDTO;
+import com.daniel.workboard.domain.dto.user.UserRequestDTO;
+import com.daniel.workboard.domain.dto.user.UserResponseDTO;
 import com.daniel.workboard.domain.entity.User;
 import org.springframework.stereotype.Component;
 

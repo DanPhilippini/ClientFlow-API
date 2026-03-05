@@ -1,13 +1,15 @@
 package com.daniel.workboard.service;
 
-import com.daniel.workboard.domain.dto.UserRequestDTO;
-import com.daniel.workboard.domain.dto.UserResponseDTO;
+import com.daniel.workboard.domain.dto.user.UserRequestDTO;
+import com.daniel.workboard.domain.dto.user.UserResponseDTO;
 import com.daniel.workboard.domain.entity.User;
 import com.daniel.workboard.domain.mapper.UserMapper;
 import com.daniel.workboard.exception.BusinessException;
 import com.daniel.workboard.domain.model.Role;
 import com.daniel.workboard.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
 
+    private static final Logger log = LoggerFactory.getLogger(UserService.class);
     private final PasswordEncoder passwordEncoder;
     private final UserRepository repository;
     private final UserMapper mapper;
@@ -43,5 +46,10 @@ public class UserService {
                 .stream()
                 .map(mapper::toResponse)
                 .toList();
+    }
+
+    public User findById(long l) {
+        return repository.findById(l)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 }
