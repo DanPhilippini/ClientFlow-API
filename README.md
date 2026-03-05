@@ -6,6 +6,10 @@ Backend REST API for client and task management built with **Spring Boot 3**, fe
 
 ---
 
+![CI](https://github.com/DanPhilippini/ClientFlow-API/actions/workflows/ci.yml/badge.svg) ![Coverage](https://img.shields.io/badge/coverage-85%25-brightgreen)
+
+---
+
 ## 📌 Overview
 
 ClientFlow API is a secure and scalable backend service that allows:
@@ -21,9 +25,30 @@ This project was built as a professional-grade backend portfolio project.
 
 ---
 
-![CI](https://github.com/DanPhilippini/ClientFlow-API/actions/workflows/ci.yml/badge.svg)
+## 🚀 Live API
 
-![Coverage](https://img.shields.io/badge/coverage-85%25-brightgreen)
+Base URL
+
+https://clientflow-api-jqxm.onrender.com
+
+Swagger Documentation
+
+https://clientflow-api-jqxm.onrender.com/swagger-ui/index.html
+
+
+## Example Request
+
+Create user
+
+POST /auth/register
+
+curl -X POST https://clientflow-api-jqxm.onrender.com/auth/register \
+-H "Content-Type: application/json" \
+-d '{
+"name": "John Doe",
+"email": "john@email.com",
+"password": "123456"
+}'
 
 ---
 
@@ -51,20 +76,6 @@ controller → service → repository → database
 3. Token must be sent in header:
    Authorization: Bearer <token>
 
-
----
-
-## 📖 API Documentation
-
-Swagger UI available at:
-http://localhost:8080/swagger-ui.html
-
-
-Features:
-- Full endpoint documentation
-- Request/response examples
-- JWT Authorize button
-- Error response schema
 
 ---
 
@@ -104,11 +115,11 @@ docker-compose up --build
 
 Example configuration:
 
-SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/clientflow
+DB_URL=jdbc:postgresql://localhost:5432/clientflow
 
-SPRING_DATASOURCE_USERNAME=postgres
+DB_USER=postgres
 
-SPRING_DATASOURCE_PASSWORD=postgres
+DB_PASSWORD=postgres
 
 JWT_SECRET=your_secret_key
 
@@ -164,8 +175,6 @@ mvn test
 
 ## 🚀 Possible Future Improvements
 
-
-CI/CD pipeline (GitHub Actions)
 
 Token blacklist / rotation
 
